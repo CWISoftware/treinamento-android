@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="450dp"
+    android:layout_height="495dp"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/lblBoasVindas"
+        android:layout_width="358dp"
+        android:layout_height="wrap_content"
+        android:onClick="trocarDeTela"
+        android:shadowColor="@color/colorPrimary"
+        android:text="@string/boas_vindas"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/txtNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" />
+
+    <Button
+        android:id="@+id/btnNavegar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="trocarDeTela"
+        android:text="@string/entrar" />
+</LinearLayout>
