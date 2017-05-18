@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = null;
 
         if (texto.equals(getResources().getString(SUECIA))) {
-            // TODO: viajar para suécia
-            intent = new Intent(this, RelativeActivity.class);
+            intent = new Intent(this, SwedenActivity.class);
         } else if (texto.equals(getResources().getString(BELGICA))) {
             intent = new Intent(this, BelgiumActivity.class);
         }

@@ -6,4 +6,7 @@
     <color name="preto">#000000</color>
     <color name="amarelo">#FFE936</color>
     <color name="vermelho">#FF0F21</color>
+
+    <color name="azul">#0369a7</color>
+    <color name="amarelo_suecia">#ffcb01</color>
 </resources>

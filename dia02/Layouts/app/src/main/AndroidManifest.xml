@@ -18,8 +18,9 @@
         </activity>
         <activity
             android:name=".BelgiumActivity"
-            android:label="@string/belgium_title"></activity>
-        <activity android:name=".RelativeActivity"></activity>
+            android:label="@string/belgium_title" />
+        <activity android:name=".RelativeActivity" />
+        <activity android:name=".SwedenActivity"></activity>
     </application>
 
 </manifest>
