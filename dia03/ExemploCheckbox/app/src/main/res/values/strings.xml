@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ExemploCheckbox</string>
+    <string name="sim_sou_viciado_em_bacon">Sim, sou viciado em bacon</string>
+    <string name="estou_com_sorte">Estou com sorte</string>
+</resources>
