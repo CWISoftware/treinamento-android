@@ -1,16 +1,24 @@
 package br.com.cwi.cursoandroid.locadoraroots;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
+
+import br.com.cwi.cursoandroid.locadoraroots.adapters.JogoSnesAdapter;
+import br.com.cwi.cursoandroid.locadoraroots.models.JogoSnes;
+import br.com.cwi.cursoandroid.locadoraroots.models.ListaJogosSnes;
+import br.com.cwi.cursoandroid.locadoraroots.utils.Constantes;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,16 +51,19 @@ public class MainActivity extends AppCompatActivity {
                 "Outro jogo3",
                 "Outro jogo4"
         );
-        final ArrayAdapter<String> titulosAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos);
-        lstJogos.setAdapter(titulosAdapter);
+        //final ArrayAdapter<String> titulosAdapter =
+                //new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titulos);
+        //lstJogos.setAdapter(titulosAdapter);
         final Context context = this;
+        final JogoSnesAdapter adapterJogos = new JogoSnesAdapter(this, ListaJogosSnes.getAll());
+        lstJogos.setAdapter(adapterJogos);
         lstJogos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // String tituloTocado = titulos.get(position);
-                String tituloTocado = titulosAdapter.getItem(position);
-                Toast.makeText(context, tituloTocado, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, DetalheJogoSnesActivity.class);
+                JogoSnes jogoTocado = adapterJogos.getItem(position);
+                intent.putExtra(Constantes.USUARIO_DETALHE, jogoTocado);
+                startActivity(intent);
             }
         });
     }

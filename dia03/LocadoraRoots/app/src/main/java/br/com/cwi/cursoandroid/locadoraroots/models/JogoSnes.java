@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 public class JogoSnes implements Serializable {
     private String titulo, urlCapaJogo, tipo;
-    private int anoLancamento;
+    private Integer anoLancamento;
 
-    public JogoSnes(String titulo, String urlCapaJogo, String tipo, int anoLancamento) {
+    public JogoSnes(String titulo, String urlCapaJogo, String tipo, Integer anoLancamento) {
         this.titulo = titulo;
         this.urlCapaJogo = urlCapaJogo;
         this.tipo = tipo;
         this.anoLancamento = anoLancamento;
     }
 
-    public int getAnoLancamento() {
+    public Integer getAnoLancamento() {
         return anoLancamento;
     }
 
