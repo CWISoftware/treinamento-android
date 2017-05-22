@@ -22,10 +22,12 @@ public class DetalheJogoSnesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalhe_jogo_snes);
         initComponents();
         loadData();
+
     }
 
     private void loadData() {
         this.jogo = (JogoSnes)getIntent().getSerializableExtra(Constantes.USUARIO_DETALHE);
+        setTitle(this.jogo.getTitulo());
         this.lblTitulo.setText(this.jogo.getTitulo());
         this.lblTipo.setText(this.jogo.getTipo());
         //this.lblAnoLancamento.setText(String.valueOf(this.jogo.getAnoLancamento()));
