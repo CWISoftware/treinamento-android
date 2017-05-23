@@ -2,7 +2,6 @@ package br.com.cwi.cursoandroid.locadoraroots;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -45,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         Log.d(TAG, "Passou pelo onResume!!!");
-        SharedPreferences preferences = getSharedPreferences(
-                Constantes.ARQUIVO_PREFERENCIAS,
-                MODE_PRIVATE);
-        Log.d(TAG, preferences.getString(Constantes.LISTA_JOGOS, "sem jogos no preferences"));
+//        SharedPreferences preferences = getSharedPreferences(
+//                Constantes.ARQUIVO_PREFERENCIAS,
+//                MODE_PRIVATE);
+//        Log.d(TAG, preferences.getString(Constantes.LISTA_JOGOS, "sem jogos no preferences"));
         super.onResume();
     }
 

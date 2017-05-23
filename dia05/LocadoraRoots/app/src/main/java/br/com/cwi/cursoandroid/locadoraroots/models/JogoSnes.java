@@ -35,6 +35,11 @@ public class JogoSnes implements Serializable {
                 this.titulo, this.tipo, this.anoLancamento, this.urlCapaJogo));
         return stringBuilder.toString();
     }
+
+    public static JogoSnes from(String csv) {
+        String[] partes = csv.split(",");
+        return new JogoSnes(partes[0], partes[3], partes[1], Integer.parseInt(partes[2]));
+    }
 }
 
 
