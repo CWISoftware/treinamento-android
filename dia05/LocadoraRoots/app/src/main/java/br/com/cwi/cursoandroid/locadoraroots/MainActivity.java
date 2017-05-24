@@ -1,29 +1,32 @@
 package br.com.cwi.cursoandroid.locadoraroots;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import br.com.cwi.cursoandroid.locadoraroots.adapters.JogoSnesAdapter;
+import br.com.cwi.cursoandroid.locadoraroots.adapters.JogoSnesRecyclerAdapter;
 import br.com.cwi.cursoandroid.locadoraroots.models.JogoSnes;
 import br.com.cwi.cursoandroid.locadoraroots.models.ListaJogosSnes;
 import br.com.cwi.cursoandroid.locadoraroots.utils.Constantes;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+    implements View.OnClickListener, View.OnLongClickListener
+{
 
     private static final String TAG = "MainActivity";
-
-    private ListView lstJogos;
+    // https://developer.android.com/training/material/lists-cards.html
+    private RecyclerView rcvJogos;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter;
     private ListaJogosSnes listaJogos;
 
     @Override
@@ -72,28 +75,13 @@ public class MainActivity extends AppCompatActivity {
     private void initComponents() {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolBarMain);
         setSupportActionBar(myToolbar);
-        lstJogos = (ListView)findViewById(R.id.lstJogos);
-        final Context context = this;
-        final JogoSnesAdapter adapterJogos = new JogoSnesAdapter(this, this.listaJogos.getAll());
-        lstJogos.setLongClickable(true);
-        lstJogos.setAdapter(adapterJogos);
-        lstJogos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                listaJogos.remover(position);
-                adapterJogos.notifyDataSetChanged();
-                return true;
-            }
-        });
-        lstJogos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(context, DetalheJogoSnesActivity.class);
-                JogoSnes jogoTocado = adapterJogos.getItem(position);
-                intent.putExtra(Constantes.USUARIO_DETALHE, jogoTocado);
-                startActivity(intent);
-            }
-        });
+        this.rcvJogos = (RecyclerView)findViewById(R.id.rcvJogos);
+        // rcvJogos.setHasFixedSize(true);
+        this.layoutManager = new LinearLayoutManager(this);
+        this.adapter = new JogoSnesRecyclerAdapter(this.listaJogos.getAll());
+        this.rcvJogos.setLayoutManager(layoutManager);
+        this.rcvJogos.setAdapter(this.adapter);
+        rcvJogos.setLongClickable(true);
     }
 
     @Override
@@ -114,6 +102,23 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(this, DetalheJogoSnesActivity.class);
+        int posicao = this.rcvJogos.getChildLayoutPosition(v);
+        JogoSnes jogoTocado = this.listaJogos.get(posicao);
+        intent.putExtra(Constantes.USUARIO_DETALHE, jogoTocado);
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        int posicao = this.rcvJogos.getChildLayoutPosition(v);
+        listaJogos.remover(posicao);
+        this.adapter.notifyDataSetChanged();
+        return true;
     }
 }
 

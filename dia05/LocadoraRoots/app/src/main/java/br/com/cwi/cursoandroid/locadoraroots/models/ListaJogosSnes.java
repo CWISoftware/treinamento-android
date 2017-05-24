@@ -54,6 +54,10 @@ public class ListaJogosSnes {
         return this.jogos;
     }
 
+    public JogoSnes get(int posicao) {
+        return this.jogos.get(posicao);
+    }
+
     public void remover(int posicao) {
         this.jogos.remove(posicao);
         this.syncWrite();
