@@ -1,10 +1,14 @@
 package br.com.cwi.cursoandroid.locadoraroots.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -34,6 +38,9 @@ public class JogoSnesRecyclerAdapter extends RecyclerView.Adapter<JogoSnesRecycl
         JogoSnes jogo = this.jogos.get(position);
         holder.lblTitulo.setText(jogo.getTitulo());
         holder.lblAno.setText(jogo.getAnoLancamento().toString());
+        Picasso.with(holder.context)
+                .load(jogo.getUrlCapaJogo())
+                .into(holder.ivCapaJogo);
     }
 
     @Override
@@ -45,13 +52,17 @@ public class JogoSnesRecyclerAdapter extends RecyclerView.Adapter<JogoSnesRecycl
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView lblTitulo, lblAno;
+        ImageView ivCapaJogo;
+        Context context;
 
         public ViewHolder(View v) {
             super(v);
             this.lblTitulo = (TextView)v.findViewById(R.id.lblTitulo);
             this.lblAno = (TextView)v.findViewById(R.id.lblAno);
-            v.setOnClickListener((MainActivity)v.getContext());
-            v.setOnLongClickListener((MainActivity)v.getContext());
+            this.ivCapaJogo = (ImageView)v.findViewById(R.id.ivCapaJogo);
+            this.context = v.getContext();
+            v.setOnClickListener((MainActivity)this.context);
+            v.setOnLongClickListener((MainActivity)this.context);
         }
     }
 }

@@ -11,9 +11,10 @@ import br.com.cwi.cursoandroid.locadoraroots.utils.Constantes;
 public class ListaJogosSnes {
 
     private static final List<JogoSnes> JOGOS_INICIAIS = new ArrayList<>(Arrays.asList(
-            new JogoSnes("Super Mario World", "https://upload.wikimedia.org/wikipedia/pt/0/06/Super-Mario-World.jpg", "Adventure", 1990),
-            new JogoSnes("The Legend of Zelda: A Link to the past", "http://www.gamexplain.com/storyimages/1334613417588436_40267_front.jpg", "RPG", 1991),
-            new JogoSnes("Chrono Trigger", "http://www.cogumelando.com.br/wp-content/upLoads/chrono-trigger-cover-snes.jpg", "RPG", 1995)
+            new JogoSnes("Chrono Trigger", "http://www.cogumelando.com.br/wp-content/upLoads/chrono-trigger-cover-snes.jpg", "RPG", 1995),
+            new JogoSnes("Super Mario World", "https://assets.catawiki.nl/assets/2014/8/17/1/c/6/1c656e3a-2601-11e4-972c-956521972b5b.jpg", "Aventura", 1990),
+            new JogoSnes("Street Fighter II Turbo", "http://vignette2.wikia.nocookie.net/capcomdatabase/images/f/f9/SFIITurboCoverScan.png/revision/latest?cb=20080806031401", "Luta", 1992),
+            new JogoSnes("The Legend of Zelda: A Link to the past", "https://s-media-cache-ak0.pinimg.com/originals/3d/4e/78/3d4e78abb05ffbadec5a63ef226ee1a9.jpg", "RPG", 1991)
     ));
 
     private SharedPreferences sharedPreferences;
