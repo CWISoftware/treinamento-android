@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 listaJogos.remover(position);
                 adapterJogos.notifyDataSetChanged();
-                return false;
+                return true;
             }
         });
         lstJogos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
