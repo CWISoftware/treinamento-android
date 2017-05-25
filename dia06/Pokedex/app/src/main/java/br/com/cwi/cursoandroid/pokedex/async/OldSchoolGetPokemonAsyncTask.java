@@ -1,11 +1,9 @@
-package br.com.cwi.cursoandroid.pokedex.asynctasks;
+package br.com.cwi.cursoandroid.pokedex.async;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,17 +12,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 
-import br.com.cwi.cursoandroid.pokedex.MainActivity;
+import br.com.cwi.cursoandroid.pokedex.activity.OldSchoolActivity;
 
-public class GetPokemonAsyncTask extends AsyncTask<Integer, Void, JSONObject> {
+public class OldSchoolGetPokemonAsyncTask extends AsyncTask<Integer, Void, JSONObject> {
 
-    private static final String LOG_CATEGORY = "GetPokemonAsyncTask";
+    private static final String LOG_CATEGORY = "OldSchoolGetPokemon";
 
-    MainActivity activity;
+    OldSchoolActivity activity;
 
-    public GetPokemonAsyncTask(MainActivity activity) {
+    public OldSchoolGetPokemonAsyncTask(OldSchoolActivity activity) {
         this.activity = activity;
     }
 
@@ -62,10 +59,8 @@ public class GetPokemonAsyncTask extends AsyncTask<Integer, Void, JSONObject> {
         String nome = null;
         try {
             nome = jsonObject.getString("name");
-        } catch (JSONException je) {
-            Log.e(LOG_CATEGORY, je.getMessage(), je);
-        } catch (NullPointerException npe) {
-            Log.e(LOG_CATEGORY, npe.getMessage(), npe);
+        } catch (Exception e) {
+            Log.e(LOG_CATEGORY, e.getMessage(), e);
         }
         activity.renderizarNome(nome);
     }
