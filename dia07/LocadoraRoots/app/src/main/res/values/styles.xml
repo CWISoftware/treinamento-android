@@ -1,0 +1,23 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="JogoSnesCardStyle" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="cardElevation">4dp</item>
+        <item name="cardCornerRadius">2dp</item>
+        <item name="contentPadding">0dp</item>
+        <item name="android:background">@color/cardview_light_background</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">12dp</item>
+        <item name="android:layout_marginRight">12dp</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+</resources>
