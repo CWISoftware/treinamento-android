@@ -84,7 +84,10 @@ public class MainActivity extends AppCompatActivity
         this.layoutManager = new LinearLayoutManager(this);
         //this.adapter = new JogoSnesRecyclerAdapter(this.listaJogos.getAll());
         jogoRepository.enqueueGetAll();
-        this.adapter = new JogoSnesRecyclerAdapter();
+        String tipoDesconto = getIntent().getStringExtra(Constantes.TIPO_DESCONTO_FITA);
+        Double descontoFita = getIntent().getDoubleExtra(Constantes.DESCONTO_FITA, 0);
+        this.adapter = new JogoSnesRecyclerAdapter(tipoDesconto, descontoFita);
+        // obtendo descontos vindos do push
         this.rcvJogos.setLayoutManager(layoutManager);
         this.rcvJogos.setAdapter(this.adapter);
         rcvJogos.setLongClickable(true);

@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class JogoSnes implements Serializable {
     public String titulo, urlCapaJogo, tipo;
     public Integer id, anoLancamento;
+    public Double desconto;
 
     public JogoSnes() {}
 

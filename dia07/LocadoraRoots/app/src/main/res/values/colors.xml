@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="cardBg">#c51276f1</color>
     <color name="cardTxt">#fffdf1</color>
+    <color name="cardDesconto">#a126b60a</color>
 </resources>

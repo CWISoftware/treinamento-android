@@ -43,6 +43,7 @@ import java.util.List;
 
 import br.com.cwi.cursoandroid.locadoraroots.MainActivity;
 import br.com.cwi.cursoandroid.locadoraroots.R;
+import br.com.cwi.cursoandroid.locadoraroots.utils.Constantes;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -50,9 +51,7 @@ public class AuthActivity extends AppCompatActivity implements LoaderCallbacks<C
 
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
+    private static final String TAG = "AuthActivity";
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -75,7 +74,21 @@ public class AuthActivity extends AppCompatActivity implements LoaderCallbacks<C
     private void navigateUserToMain() {
         FirebaseUser currentUser = authService.getCurrentUser();
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("USUARIO_LOGADO", currentUser.getEmail());
+        intent.putExtra(Constantes.USUARIO_LOGADO, currentUser.getEmail());
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            for (String key : extras.keySet()) {
+                Log.d(TAG, "k: " + key + " - v: " + extras.get(key));
+                if (key.equals("desconto")) {
+                    intent.putExtra(Constantes.DESCONTO_FITA, extras.getDouble(key));
+                }
+                if (key.equals("tipo")) {
+                    intent.putExtra(Constantes.TIPO_DESCONTO_FITA, extras.getString(key));
+                }
+            }
+        }
+
         startActivity(intent);
     }
 

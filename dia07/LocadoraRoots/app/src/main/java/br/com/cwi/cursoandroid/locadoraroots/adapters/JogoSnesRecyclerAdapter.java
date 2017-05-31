@@ -1,11 +1,13 @@
 package br.com.cwi.cursoandroid.locadoraroots.adapters;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -20,8 +22,12 @@ import br.com.cwi.cursoandroid.locadoraroots.models.JogoSnes;
 public class JogoSnesRecyclerAdapter extends RecyclerView.Adapter<JogoSnesRecyclerAdapter.ViewHolder> {
 
     private List<JogoSnes> jogos;
+    private Double descontoJogos;
+    private String tipoDescontoJogos;
 
-    public JogoSnesRecyclerAdapter() {
+    public JogoSnesRecyclerAdapter(String tipoDescontoJogos, Double descontoJogos) {
+        this.tipoDescontoJogos = tipoDescontoJogos;
+        this.descontoJogos = descontoJogos;
         this.jogos = new ArrayList<JogoSnes>();
     }
 
@@ -42,6 +48,11 @@ public class JogoSnesRecyclerAdapter extends RecyclerView.Adapter<JogoSnesRecycl
         Picasso.with(holder.context)
                 .load(jogo.urlCapaJogo)
                 .into(holder.ivCapaJogo);
+
+        if (jogo.tipo.equals(this.tipoDescontoJogos)) {
+            jogo.desconto = this.descontoJogos;
+            holder.faixaOverlay.setBackgroundColor(ContextCompat.getColor(holder.context, R.color.cardDesconto));
+        }
     }
 
     public void adicionarJogo(JogoSnes jogo) {
@@ -59,12 +70,14 @@ public class JogoSnesRecyclerAdapter extends RecyclerView.Adapter<JogoSnesRecycl
     // 2. Classe aninhada que representa o ViewHolder do Adapter/Recycler
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        LinearLayout faixaOverlay;
         TextView lblTitulo, lblAno;
         ImageView ivCapaJogo;
         Context context;
 
         public ViewHolder(View v) {
             super(v);
+            this.faixaOverlay = (LinearLayout)v.findViewById(R.id.faixa_overlay_card);
             this.lblTitulo = (TextView)v.findViewById(R.id.lblTitulo);
             this.lblAno = (TextView)v.findViewById(R.id.lblAno);
             this.ivCapaJogo = (ImageView)v.findViewById(R.id.ivCapaJogo);
